@@ -1,0 +1,14 @@
+version: "3.9"
+
+services:
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      # Mount local data directory so the index persists across container restarts.
+      - ./data:/app/data
+    environment:
+      INDEX_PATH: data/index
+      CLIP_MODEL: clip-ViT-B-32
+    restart: unless-stopped
